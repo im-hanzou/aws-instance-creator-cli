@@ -78,7 +78,7 @@ echo "Other OS? maybe you can try this! https://gist.github.com/magnetikonline/e
 printf "\n"
 read -p "Insert AMI (ex ami-12345): " ami
 printf "\n"
-printf "Insert instance type\n. You can instance types here! https://aws.amazon.com/ec2/instance-types/\n"
+printf "Insert instance type.\nYou can instance types here! https://aws.amazon.com/ec2/instance-types/\n"
 read -p "Instance Type: " instance_type
 run_instance=$(aws ec2 run-instances --image-id "$ami" --instance-type "$instance_type" --key-name "$key_pair" --security-group-ids "$sgroup" --block-device-mappings 'DeviceName=/dev/sda1,Ebs={VolumeSize=100}' --region "$region" | jq -r '.Instances[0].InstanceId')
 if [[ $run_instance =~ "i-" ]]; then
