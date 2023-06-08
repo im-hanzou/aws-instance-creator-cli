@@ -44,7 +44,7 @@ else
     echo " => Security Group Already Exists!"
 fi
 printf "\n"
-# enable port 22
+# enable port 
 read -p "Enabled Port? (22 ssh/3389 winrdp or other): " port
 eport=$(aws ec2 authorize-security-group-ingress --group-name $security_group --protocol tcp --port "$port" --cidr 0.0.0.0/0)
 if [[ $eport =~ "true" ]]; then
