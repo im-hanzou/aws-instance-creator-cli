@@ -26,6 +26,14 @@ read -p "Access Key ID: " key
 read -p "Secret Key: " secret
 read -p "Region: " region
 echo " => Credentials Loaded!"
+# awscli ec2 access check
+perm=$(aws ec2 describe-regions)
+if [[ $perm =~ "Regions" ]]; then
+    echo " => Access Granted!"
+else
+    echo " => Access Denied!"
+    exit 1
+fi
 echo "============================================================================="
 
 export AWS_ACCESS_KEY_ID=$key
